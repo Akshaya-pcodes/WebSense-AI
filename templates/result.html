@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary | WebSense AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f8f5;
+            color: #202522;
+            padding: 30px 6%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #647c68;
+        }
+
+        nav a {
+            color: #647c68;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-bottom: 30px;
+            overflow-wrap: anywhere;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e5e8e3;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 22px;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 18px;
+            color: #647c68;
+        }
+
+        .summary {
+            line-height: 1.8;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: #647c68;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 15px;
+        }
+
+        @media(max-width: 600px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">WebSense <span>AI</span></div>
+        <a href="/">← Back Home</a>
+    </nav>
+
+    <main class="container">
+
+        <h1>Website Summary</h1>
+
+        <p class="subtitle">
+            {{ title }}<br>
+            {{ url }}
+        </p>
+
+        <section class="card">
+            <h2>✦ AI Generated Summary</h2>
+
+            <div class="summary">{{ summary }}</div>
+        </section>
+
+        <a href="/" class="back-button">Summarize Another Website</a>
+
+    </main>
+
+</body>
+</html>

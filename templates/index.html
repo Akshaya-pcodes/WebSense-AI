@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WebSense AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #111111;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            height: 85px;
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #69856b;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #222;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #69856b;
+        }
+
+        .get-started {
+            background: #647c68;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            max-width: 1450px;
+            min-height: 640px;
+            margin: auto;
+            padding: 100px 6% 50px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(42px, 5vw, 68px);
+            line-height: 1.12;
+            letter-spacing: -3px;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .hero-content h1 span {
+            color: #69856b;
+        }
+
+        .description {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 570px;
+            margin-bottom: 35px;
+        }
+
+        /* URL INPUT */
+
+        .url-form {
+            display: flex;
+            align-items: center;
+            border: 1px solid #dce5da;
+            border-radius: 50px;
+            padding: 8px;
+            max-width: 700px;
+            box-shadow: 0 8px 25px rgba(70, 100, 70, 0.07);
+        }
+
+        .url-form input {
+            flex: 1;
+            min-width: 0;
+            border: none;
+            outline: none;
+            padding: 15px 20px;
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        .url-form button {
+            border: none;
+            background: #647c68;
+            color: white;
+            padding: 17px 28px;
+            border-radius: 40px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .url-form button:hover {
+            background: #405d45;
+            transform: translateY(-2px);
+        }
+
+        /* SUMMARY OPTIONS */
+
+        .summary-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+        }
+
+        .summary-options label {
+            border: 1px solid #e3e5e3;
+            border-radius: 30px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .summary-options label:has(input:checked) {
+            background: #edf3e9;
+            border-color: #edf3e9;
+            color: #506d50;
+        }
+
+        .summary-options input {
+            accent-color: #647c68;
+            margin-right: 5px;
+        }
+
+        /* RIGHT ILLUSTRATION */
+
+        .hero-visual {
+            position: relative;
+            min-height: 430px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, #edf4e9 0%, #ffffff 70%);
+            border-radius: 50%;
+        }
+
+        .browser-card {
+            width: 85%;
+            background: white;
+            border: 1px solid #eeeeee;
+            border-radius: 18px;
+            padding: 18px;
+            transform: rotate(-5deg);
+            box-shadow: 0 25px 55px rgba(0,0,0,0.09);
+        }
+
+        .browser-top {
+            display: flex;
+            gap: 7px;
+            margin-bottom: 20px;
+        }
+
+        .dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #d9d9d9;
+        }
+
+        .dot:first-child { background: #f17b70; }
+        .dot:nth-child(2) { background: #f1c45c; }
+        .dot:nth-child(3) { background: #78bb81; }
+
+        .image-placeholder {
+            height: 125px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #dce9d8, #a9c5a4);
+            margin-bottom: 20px;
+        }
+
+        .line {
+            height: 11px;
+            background: #e9eee7;
+            border-radius: 20px;
+            margin: 12px 0;
+        }
+
+        .line.short {
+            width: 65%;
+        }
+
+        .summary-card {
+            position: absolute;
+            width: 65%;
+            right: -2%;
+            bottom: 10px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+            transform: rotate(5deg);
+        }
+
+        .summary-card h3 {
+            font-size: 19px;
+            margin-bottom: 20px;
+        }
+
+        .summary-card .line {
+            background: #dfeadb;
+        }
+
+        .floating-icon {
+            position: absolute;
+            top: 0;
+            right: 12%;
+            width: 90px;
+            height: 90px;
+            background: #789779;
+            color: white;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            transform: rotate(12deg);
+            box-shadow: 0 15px 30px rgba(80,110,80,0.2);
+        }
+
+        /* FEATURES */
+
+        .features {
+            max-width: 1200px;
+            margin: 25px auto 70px;
+            padding: 25px 6%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 25px;
+            border-right: 1px solid #e5e5e5;
+        }
+
+        .feature:last-child {
+            border: none;
+        }
+
+        .feature-icon {
+            font-size: 30px;
+            color: #647c68;
+        }
+
+        .feature h4 {
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        .feature p {
+            font-size: 12px;
+            color: #777;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 65px;
+            }
+
+            .hero-visual {
+                min-height: 350px;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .feature:nth-child(2) {
+                border-right: none;
+            }
+        }
+
+        @media(max-width: 600px) {
+            nav {
+                padding: 0 5%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .get-started {
+                padding: 12px 17px;
+            }
+
+            .hero {
+                padding: 65px 5% 30px;
+            }
+
+            .hero-content h1 {
+                letter-spacing: -2px;
+            }
+
+            .description {
+                font-size: 15px;
+            }
+
+            .url-form {
+                border-radius: 18px;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .url-form button {
+                width: 100%;
+            }
+
+            .hero-visual {
+                min-height: 300px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                margin-top: 25px;
+            }
+
+            .feature {
+                border-right: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav>
+        <div class="logo">✦ WebSense <span>AI</span></div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="#about">About</a>
+        </div>
+
+        <a href="#summarize" class="get-started">Get Started →</a>
+    </nav>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Understand Any Website.
+                <span>Instantly.</span>
+            </h1>
+
+            <p class="description">
+                Turn lengthy websites into clear, concise summaries
+                with the power of AI.
+            </p>
+
+            <form class="url-form"
+                  action="/summarize"
+                  method="POST"
+                  id="summarize">
+
+                <input
+                    type="url"
+                    name="url"
+                    placeholder="Paste your website URL here..."
+                    required
+                >
+
+                <button type="submit">
+                    Summarize →
+                </button>
+
+            </form>
+
+
+            <div class="summary-options">
+
+                <label>
+                    <input type="radio" name="summary_type"
+                           value="short" checked>
+                    Short Summary
+                </label>
+
+                <label>
+                    <input type="radio" name="summary_type"
+                           value="detailed">
+                    Detailed Summary
+                </label>
+
+                <label>
+                    <input type="radio" name="summary_type"
+                           value="bullet">
+                    Key Points
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- VISUAL ILLUSTRATION -->
+
+        <div class="hero-visual">
+
+            <div class="browser-card">
+
+                <div class="browser-top">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+
+                <div class="image-placeholder"></div>
+
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line short"></div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>✦ Summary</h3>
+
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line short"></div>
+                <div class="line"></div>
+                <div class="line short"></div>
+
+            </div>
+
+
+            <div class="floating-icon">▤</div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="features" id="about">
+
+        <div class="feature">
+            <div class="feature-icon">ϟ</div>
+            <div>
+                <h4>Fast & Accurate</h4>
+                <p>Get summaries in seconds</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">♢</div>
+            <div>
+                <h4>Safe & Secure</h4>
+                <p>Your privacy matters</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">✦</div>
+            <div>
+                <h4>Powered by Gemini</h4>
+                <p>Smart AI technology</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">▣</div>
+            <div>
+                <h4>Works Everywhere</h4>
+                <p>On any device</p>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+</html>
