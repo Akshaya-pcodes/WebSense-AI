@@ -1,61 +1,171 @@
-# WebSense AI
+WebSense AI – AI Website Summarizer
 
-WebSense AI is an AI\-powered web intelligence platform designed to analyze, interpret, and provide meaningful insights from web content. The system leverages modern web technologies and artificial intelligence techniques to help users extract valuable information efficiently.
+WebSense AI is a web application designed to extract readable content from websites and generate concise, meaningful summaries using Google's Gemini AI.
 
-## Features
+The application helps users understand lengthy website content quickly by converting it into structured summaries.
 
-- Intelligent Web Content Analysis
-- AI\-Powered Insights
-- User\-Friendly Interface
-- Real\-Time Processing
-- Responsive Design
-- Secure Authentication
-- Data Visualization Dashboard
-- Scalable Architecture
+Overview
 
-## Tech Stack
+Reading lengthy web pages can be time-consuming. WebSense AI simplifies this process by allowing users to enter a website URL and receive an AI-generated summary.
 
-- Frontend: HTML, CSS, JavaScript / React
-- Backend: Node.js / Python / PHP
-- Database: MongoDB / MySQL
-- AI Integration: OpenAI / Gemini / Custom Models
+The application uses Flask as the backend framework, BeautifulSoup for website content extraction, and Google's Gemini API for AI-powered summarization.
 
-## Installation
+Key Features
 
-git clone [https://github.com/Akshaya\-pcodes/WebSense\-AI.git](https://github.com/Akshaya-pcodes/WebSense-AI.git)
+- Website URL Input
+- Automatic Website Content Extraction
+- HTML Parsing using BeautifulSoup
+- AI-Based Content Summarization
+- Short Summary
+- Detailed Summary
+- Key Points Summary
+- Dedicated Summary Results Page
+- URL Validation
+- Website Connection Error Handling
 
-cd WebSense\-AI
+Technologies Used
 
-Install dependencies:
+Technology| Purpose
+Python| Backend Programming
+Flask| Web Framework
+Google Gemini API| AI Summarization
+BeautifulSoup| HTML Parsing
+Requests| Website Content Retrieval
+HTML5| Page Structure
+CSS3| User Interface
+JavaScript| Frontend Interactions
 
-npm install
+Project Structure
 
-Run the application:
+WebSense-AI/
+│
+├── app.py
+├── config.py
+├── website_extractor.py
+├── gemini_service.py
+│
+├── templates/
+│   ├── index.html
+│   └── result.html
+│
+├── requirements.txt
+├── .env
+├── .gitignore
+└── README.md
 
-npm start
+How It Works
 
-## Project Workflow
+1. The user enters a website URL.
+2. Flask receives the submitted URL.
+3. The website extractor retrieves the webpage HTML.
+4. BeautifulSoup removes unnecessary HTML elements.
+5. Readable website content is extracted.
+6. The extracted content is passed to the Gemini AI service.
+7. Gemini generates a summary based on the selected summary type.
+8. The application displays the result on a separate results page.
 
-1. User submits web content or URL.
-2. System processes and analyzes data.
-3. AI engine extracts meaningful insights.
-4. Results are displayed through an interactive dashboard.
+Installation and Setup
 
-## Future Scope
+1. Clone the Repository
 
-- Multi\-language support
-- Advanced AI analytics
-- Browser extension integration
-- Real\-time web monitoring
-- Personalized recommendations
+git clone https://github.com/Akshaya-pcodes/WebSense-AI.git
 
-## Author
+2. Navigate to the Project Folder
 
-**Akshaya**
+cd WebSense-AI
 
-GitHub: [Akshaya\-pcodes](https://github.com/Akshaya-pcodes)
+3. Create a Virtual Environment
 
-## License
+python -m venv venv
 
-This project is licensed under the MIT License.
+4. Activate the Virtual Environment
 
+Windows PowerShell:
+
+.\venv\Scripts\Activate.ps1
+
+5. Install Dependencies
+
+pip install -r requirements.txt
+
+6. Configure Gemini API
+
+Create a ".env" file in the project root directory.
+
+GEMINI_API_KEY=your_gemini_api_key
+GEMINI_MODEL=gemini-2.5-flash
+FLASK_SECRET_KEY=your_secret_key
+
+Get your API key from:
+
+https://aistudio.google.com/apikey
+
+Important: Never upload your ".env" file or expose your API key publicly.
+
+7. Run the Application
+
+python app.py
+
+8. Open in Browser
+
+http://127.0.0.1:5000
+
+Application Modules
+
+1. Flask Backend – "app.py"
+
+Handles HTTP requests, receives website URLs, coordinates extraction and summarization, and renders the result page.
+
+2. Website Extractor – "website_extractor.py"
+
+Uses Requests and BeautifulSoup to retrieve and parse webpage content.
+
+3. Gemini Service – "gemini_service.py"
+
+Connects to Google's Gemini API and generates summaries from extracted website content.
+
+4. Configuration – "config.py"
+
+Loads application configuration and environment variables.
+
+Summary Types
+
+Type| Description
+Short Summary| Concise overview of website content
+Detailed Summary| More descriptive summary with headings
+Key Points| Main information presented as bullet points
+
+Error Handling
+
+The application includes handling for:
+
+- Invalid website URLs
+- Website connection failures
+- Request timeouts
+- Non-HTML responses
+- Empty extracted content
+- AI summarization errors
+
+Limitations
+
+- Some websites may block automated requests.
+- JavaScript-rendered content may not be extracted.
+- Summarization requires a valid Gemini API key and available API quota.
+- Extracted content is limited to a configured character length.
+
+Future Improvements
+
+- PDF Summary Export
+- TXT Summary Export
+- Improved Dynamic Website Extraction
+- Enhanced URL and Network Security
+
+Author
+
+Akshaya P
+
+GitHub: https://github.com/Akshaya-pcodes
+
+---
+
+Developed as an AI-integrated web development project using Python, Flask, web scraping, and Google's Gemini API.
